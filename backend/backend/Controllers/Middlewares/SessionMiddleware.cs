@@ -16,8 +16,8 @@ namespace backend.Controllers.Middlewares
         {
             try
             {
-                var sessionId = context.Request.Cookies[_sessionKey];
-                sessionResolver.SetSessionId(Guid.Parse(sessionId));
+                //var sessionId = context.Request.Cookies[_sessionKey];
+                //sessionResolver.SetSessionId(Guid.Parse(sessionId));
                 await _next(context);
             }
             catch(Exception ex)
