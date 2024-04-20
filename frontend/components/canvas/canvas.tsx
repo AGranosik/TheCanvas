@@ -31,7 +31,15 @@ import {
 import Aside from "./aside";
 import Header from "./header";
 import Port from "../viewer/port";
+import { useState } from "react";
 export default function Canvas() {
+  const [prompt, setPrompt] = useState('')
+
+  function SendPrompt(event){
+    console.log(prompt)
+    event.preventDefault()
+  }
+
   return (
     <div className="grid h-screen w-full pl-[53px]">
       <Aside />
@@ -60,7 +68,9 @@ export default function Canvas() {
               </Label>
               <Textarea
                 id="message"
+                value={prompt}
                 placeholder="Type your message here..."
+                onChange={e => {setPrompt(e.currentTarget.value)}}
                 className="min-h-12 resize-none border-0 p-3 shadow-none focus-visible:ring-0"
               />
               <div className="flex items-center p-3 pt-0">
@@ -86,7 +96,8 @@ export default function Canvas() {
                     <TooltipContent side="top">Use Microphone</TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
-                <Button type="submit" size="sm" className="ml-auto gap-1.5">
+                <Button type="submit" size="sm" className="ml-auto gap-1.5"
+                  onClick={event => SendPrompt(event)}>
                   Send Message
                   <CornerDownLeft className="size-3.5" />
                 </Button>
