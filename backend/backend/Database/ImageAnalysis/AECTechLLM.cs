@@ -18,38 +18,26 @@ namespace llm_sandbox
         {
             ILoggerFactory myLoggerFactory = NullLoggerFactory.Instance;
 
-            /*
-            var builder = Kernel.CreateBuilder().AddOpenAIChatCompletion(
-                        "gpt-4-turbo",                        // OpenAI Model Name
-                        "sk-proj-UWB0QdowJyJKpvksgwYZT3BlbkFJ0Tlloro91YkXPoIia2nz",            // OpenAI API key
-                        serviceId: "OpenAI_davinci"             // alias used in the prompt templates' config.json
-            );
-            */
-
-
             _kernel = Kernel.CreateBuilder()
-                .AddOpenAIChatCompletion("gpt-4-vision-preview", "sk-proj-UWB0QdowJyJKpvksgwYZT3BlbkFJ0Tlloro91YkXPoIia2nz")
+                .AddOpenAIChatCompletion("gpt-4-vision-preview", "")
                 .Build();
-
-
-            //builder.Services.AddSingleton(myLoggerFactory);
-
-           // _kernel = builder.Build();
         }
 
         public async Task<ChatMessageContent> GetImageResponse()
         {
-            const string ImageUri = "https://i.ibb.co/QfcKD8Z/2.jpg";
-            const string ImageUtll = "https://i.ibb.co/T4jgYmj/1.jpg";
+            const string utciNow = "https://i.ibb.co/QdVTjYC/Copenhagen-UTCI-now.jpg";
+            const string utci2050 = "https://i.ibb.co/tmxk8xY/Copenhagen-UTCI-2050.jpg";
             var chatCompletionService = _kernel.GetRequiredService<IChatCompletionService>();
 
-            var chatHistory = new ChatHistory("You are an enviromental sepcialist working in AEC.");
+            var chatHistory = new ChatHistory("You are an enviromental sepcialist working in AEC. Focuesd on providing feedback for urban planer");
+
             var list = new ChatMessageContentItemCollection
             {
-                new TextContent("Provided images are results of sunlight analisy of same plot. " +
-                "Can you compare those results and say what is differece between them?"),
-                new ImageContent(new Uri(ImageUri)),
-                new ImageContent(new Uri(ImageUtll))
+                new TextContent("Provided images are results of UTCI comfort analisy of same plot in 2024(first image) and in 2050(secound image)" +
+                "Can you compare those results and say what is differece between them both climates? Be breif and profesional and focus on desing impact" +
+                "What would be good startegies for mitigating negative impact. Sumarize in 70 words and put strategy in 5 bullet points"),
+                new ImageContent(new Uri(utciNow)),
+                new ImageContent(new Uri(utci2050)),
             };
             chatHistory.AddUserMessage((ChatMessageContentItemCollection)list);
 
@@ -69,7 +57,32 @@ namespace llm_sandbox
             var response = await _kernel.InvokeAsync(gptFunction, new() { ["input"] = promptContent });
             return response.ToString();
             }
-        
+
+        public async Task<ChatMessageContent> GetImageResponseCombined(string analisys1, string analisys2)
+        {
+            const string utciNow = "https://i.ibb.co/QdVTjYC/Copenhagen-UTCI-now.jpg";
+            const string utci2050 = "https://i.ibb.co/tmxk8xY/Copenhagen-UTCI-2050.jpg";
+            var chatCompletionService = _kernel.GetRequiredService<IChatCompletionService>();
+
+            var chatHistory = new ChatHistory("You are an enviromental sepcialist working in AEC. Focuesd on providing feedback for urban planer");
+
+            chatHistory.AddUserMessage(
+            [
+                new TextContent("Provided images are results of UTCI comfort analisy of same plot in 2024(first image) and in 2050(secound image)" +
+                "Can you compare those results and say what is differece between them both climates? Be breif and profesional and focus on desing impact" +
+                "What would be good startegies for mitigating negative impact. Sumarize in 70 words and put strategy in 5 bullet points"),
+                new ImageContent(new Uri(utciNow)),
+                new ImageContent(new Uri(utci2050)),
+                new TextContent("Here you have numeric data from same analisys. Can you calculate percentage: " + analisys1 + "2050: " + analisys2),
+
+            ]);
+
+            var reply = await chatCompletionService.GetChatMessageContentAsync(chatHistory);
+
+
+            return reply;
+        }
+
         public async Task<string> GetComparisonResponse(string promptContent, string otherContent)
         {
             var prompt = @" You are climate specialist.
