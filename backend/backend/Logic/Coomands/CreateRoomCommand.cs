@@ -1,5 +1,6 @@
 ﻿using backend.Database;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Logic.Coomands
 {
@@ -22,6 +23,10 @@ namespace backend.Logic.Coomands
             if (string.IsNullOrEmpty(request.Name))
                 throw new Exception("Name cannot be empty.");
 
+            var isRoomExist = await IsRoomExistsAsync(request.Name);
+            if (isRoomExist)
+                throw new ArgumentException("Room already exists.");
+
             var sessionId = Guid.NewGuid();
             _context.Rooms.Add(new Room
             {
@@ -32,5 +37,8 @@ namespace backend.Logic.Coomands
 
             return sessionId;
         }
+
+        private Task<bool> IsRoomExistsAsync(string name)
+            => _context.Rooms.AnyAsync(r => r.Name == name);
     }
 }
