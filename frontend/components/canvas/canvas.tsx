@@ -32,12 +32,16 @@ import Aside from "./aside";
 import Header from "./header";
 import Port from "../viewer/port";
 import { useState } from "react";
+import { getPromptResponse } from "@/api/promtpApi";
 export default function Canvas() {
   const [prompt, setPrompt] = useState('')
+  const [response, setResponse] = useState('')
 
-  function SendPrompt(event){
+  const SendPrompt = async (event) => {
     console.log(prompt)
     event.preventDefault()
+    let res = await getPromptResponse(prompt)
+    setResponse(res.data)
   }
 
   return (
@@ -55,9 +59,10 @@ export default function Canvas() {
         </div>
      
           <div className="relative flex h-full min-h-[50vh] flex-col rounded-xl bg-muted/50 p-4 lg:col-span-2">
-            <Badge variant="outline" className="absolute right-3 top-3">
-              Output
-            </Badge>
+            <div className="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring p-3"
+              x-chunk="dashboard-03-chunk-1">
+                {response}
+              </div>
             <div className="flex-1" />
             <form
               className="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"

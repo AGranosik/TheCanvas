@@ -15,9 +15,9 @@ namespace backend.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("Prompt")]
-        public async Task<IActionResult> GetImages(CancellationToken cancellationToken)
-            => Ok(await _mediator.Send(new GetImageComaprisionQuery(), cancellationToken));
+        [HttpPost("Prompt")]
+        public async Task<IActionResult> GetImages([FromBody]GetImageComaprisionQuery request, CancellationToken cancellationToken)
+            => Ok(await _mediator.Send(request, cancellationToken));
 
         [HttpGet]
         public async Task<IActionResult> GetImages([FromQuery] GetFilesQuery request, CancellationToken cancellationToken)

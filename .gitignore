@@ -8,3 +8,5 @@
 /backend/backend/obj
 /backend/backend/backend.csproj.user
 /backend/.vs/ProjectEvaluation
+/node_modules
+/package-lock.json

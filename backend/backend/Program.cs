@@ -18,6 +18,11 @@ builder.Services.AddMediatR(x => x.RegisterServicesFromAssembly(typeof(Program).
 
 var app = builder.Build();
 
+app.UseCors(builder => builder
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed((host) => true)
+        .AllowCredentials());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
