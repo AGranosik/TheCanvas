@@ -19,7 +19,7 @@ namespace llm_sandbox
             ILoggerFactory myLoggerFactory = NullLoggerFactory.Instance;
 
             _kernel = Kernel.CreateBuilder()
-                .AddOpenAIChatCompletion("gpt-4-vision-preview", "sk-proj-dSIKB7aJsFqUCjjJOJbnT3BlbkFJie3j4twfpEqBslTTDB1i")
+                .AddOpenAIChatCompletion("gpt-4-vision-preview", "")
                 .Build();
         }
 
