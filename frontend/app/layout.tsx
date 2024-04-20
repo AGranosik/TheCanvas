@@ -4,6 +4,14 @@ import "./globals.css";
 import Aside from "@/components/canvas/aside";
 import Header from "@/components/canvas/header";
 const inter = Inter({ subsets: ["latin"] });
+import { Bot } from "lucide-react";
+
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import Chat from "@/components/chat/chat";
 
 export const metadata: Metadata = {
   title: "Canvas",
@@ -22,7 +30,17 @@ export default function RootLayout({
           <Aside />
           <div className="flex flex-col">
             <Header />
-            {children}{" "}
+            {children}
+          </div>
+          <div style={{ position: "absolute", bottom: "0px", left: "50%" }}>
+            <Popover>
+              <PopoverTrigger>
+                <Bot />
+              </PopoverTrigger>
+              <PopoverContent style={{ width: "60vw", height: "70vh" }}>
+                <Chat />
+              </PopoverContent>
+            </Popover>
           </div>
         </div>
       </body>
