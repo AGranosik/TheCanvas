@@ -6,12 +6,14 @@ namespace backend.Database
 {
     public static class Configuration
     {
-        public static void ConfigureDB(this WebApplicationBuilder builder)
+        public static IServiceCollection ConfigureDB(this WebApplicationBuilder builder)
         {
             var configuration = builder.Configuration;
             var services = builder.Services;
             services
                 .SetupDbConnection(configuration);
+
+            return services;
         }
 
         public static void SetUpDb(this WebApplication app)
