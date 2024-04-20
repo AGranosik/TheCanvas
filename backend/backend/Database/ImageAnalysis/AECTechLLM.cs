@@ -28,7 +28,7 @@ namespace llm_sandbox
 
 
             _kernel = Kernel.CreateBuilder()
-                .AddOpenAIChatCompletion("gpt-4-vision-preview", "sk-proj-UWB0QdowJyJKpvksgwYZT3BlbkFJ0Tlloro91YkXPoIia2nz")
+                .AddOpenAIChatCompletion("gpt-4-vision-preview", "ss")
                 .Build();
 
 
