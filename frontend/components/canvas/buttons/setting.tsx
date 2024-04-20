@@ -77,11 +77,11 @@ const Setting: React.FC<SettingProps> = () => {
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
-            <DrawerTitle>Move Goal</DrawerTitle>
-            <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+            <DrawerTitle>Setting</DrawerTitle>
+            <DrawerDescription>View analyses</DrawerDescription>
           </DrawerHeader>
           <div
-            className="relative hidden flex-col items-start gap-8 md:flex"
+            className="relative w-full hidden flex-col items-start gap-8 md:flex"
             x-chunk="dashboard-03-chunk-0"
           >
             <form className="grid w-full items-start gap-6">
