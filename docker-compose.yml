@@ -9,3 +9,23 @@ services:
       - POSTGRES_PASSWORD=S3cret
       - POSTGRES_USER=citizix_user
       - POSTGRES_DB=citizix_db
+    volumes:
+      - ./vpostgres:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  api:
+    build: 
+      context: ./backend
+      dockerfile: ./Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - 7167:80
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=postgres;Port=5432;Database=citizix_db;;Username=citizix_user;Password=S3cret
+volumes:
+  vpostgres:

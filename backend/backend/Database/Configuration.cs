@@ -10,7 +10,6 @@ namespace backend.Database
         {
             var configuration = builder.Configuration;
             var services = builder.Services;
-
             services
                 .SetupDbConnection(configuration);
         }
