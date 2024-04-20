@@ -28,7 +28,7 @@ namespace llm_sandbox
 
 
             _kernel = Kernel.CreateBuilder()
-                .AddOpenAIChatCompletion("gpt-4-vision-preview", "ss")
+                .AddOpenAIChatCompletion("gpt-4-vision-preview", "sk-proj-UWB0QdowJyJKpvksgwYZT3BlbkFJ0Tlloro91YkXPoIia2nz")
                 .Build();
 
 
@@ -51,7 +51,7 @@ namespace llm_sandbox
                 new ImageContent(new Uri(ImageUri)),
                 new ImageContent(new Uri(ImageUtll))
             };
-            chatHistory.AddUserMessage(list);
+            chatHistory.AddUserMessage((ChatMessageContentItemCollection)list);
 
             var reply = await chatCompletionService.GetChatMessageContentAsync(chatHistory);
 
