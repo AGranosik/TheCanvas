@@ -19,12 +19,24 @@ namespace backend.Controllers
         public async Task<IActionResult> GetImages([FromQuery] GetFilesQuery request, CancellationToken cancellationToken)
             => Ok(await _mediator.Send(request, cancellationToken));
 
-        [HttpPost]
-        public async Task<IActionResult> PostImage(IFormFile file, CancellationToken cancellationToken)
+        [HttpPost("before")]
+        public async Task<IActionResult> PostImageBefore(IFormFile file, CancellationToken cancellationToken)
         {
-            await _mediator.Send(new Save2DProjectionCommand
+            await _mediator.Send(new SaveProjection
             {
-                Image = file
+                Image = file,
+                ProjectionBefore = true
+            }, cancellationToken);
+            return Ok();
+        }
+
+        [HttpPost("after")]
+        public async Task<IActionResult> PostImageAfter(IFormFile file, CancellationToken cancellationToken)
+        {
+            await _mediator.Send(new SaveProjection
+            {
+                Image = file,
+                ProjectionBefore = false
             }, cancellationToken);
             return Ok();
         }

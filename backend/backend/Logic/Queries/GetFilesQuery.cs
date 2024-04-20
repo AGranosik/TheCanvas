@@ -14,6 +14,7 @@ namespace backend.Logic.Queries
     {
         public string FileName { get; set; }
         public EFileType Type { get; set; }
+        public bool Before { get; set; }
     }
 
     public enum EFileType
@@ -47,7 +48,8 @@ namespace backend.Logic.Queries
                 FileNames = files.Select(f => new ArchetectureFile
                 {
                     FileName = f,
-                    Type = f.Contains(".jpg") ? EFileType.Images2d : EFileType.View3d
+                    Type = f.Contains(".jpg") ? EFileType.Images2d : EFileType.View3d,
+                    Before = f.Contains("_before") ? true : false
                 }).ToList()
             };
         }
