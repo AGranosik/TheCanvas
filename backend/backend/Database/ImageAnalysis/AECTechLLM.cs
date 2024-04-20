@@ -66,8 +66,8 @@ namespace llm_sandbox
 
             var chatHistory = new ChatHistory("You are an enviromental sepcialist working in AEC. Focuesd on providing feedback for urban planer");
 
-            chatHistory.AddUserMessage(
-            [
+            ChatMessageContentItemCollection list = new()
+            {
                 new TextContent("Provided images are results of UTCI comfort analisy of same plot in 2024(first image) and in 2050(secound image)" +
                 "Can you compare those results and say what is differece between them both climates? Be breif and profesional and focus on desing impact" +
                 "What would be good startegies for mitigating negative impact. Sumarize in 70 words and put strategy in 5 bullet points"),
@@ -75,7 +75,9 @@ namespace llm_sandbox
                 new ImageContent(new Uri(utci2050)),
                 new TextContent("Here you have numeric data from same analisys. Can you calculate percentage: " + analisys1 + "2050: " + analisys2),
 
-            ]);
+            };
+
+            chatHistory.AddUserMessage(list);
 
             var reply = await chatCompletionService.GetChatMessageContentAsync(chatHistory);
 

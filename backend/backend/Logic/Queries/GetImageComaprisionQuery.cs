@@ -12,12 +12,11 @@ namespace backend.Logic.Queries
     {
         public async Task<string> Handle(GetImageComaprisionQuery request, CancellationToken cancellationToken)
         {
-            return "test";
-            //var aecTech = new AECTechLLM();
+            var aecTech = new AECTechLLM();
 
-            //var response = await aecTech.GetImageResponse();
+            var response = await aecTech.GetImageResponse();
 
-            //return response.Items.First().ToString();
+            return response.Items.First().ToString();
         }
     }
 }
