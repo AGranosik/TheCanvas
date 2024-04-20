@@ -48,7 +48,7 @@ import {
   TooltipTrigger,
   TooltipProvider,
 } from "@/components/ui/tooltip";
-import Setting from "./buttons/setting";
+
 import { useRouter } from "next/navigation";
 export default function Aside() {
   const router = useRouter();
@@ -117,7 +117,7 @@ export default function Aside() {
             </Tooltip>
           </TooltipProvider>
 
-          <Setting />
+        
         </nav>
         <nav className="mt-auto grid gap-1 p-2">
           <TooltipProvider>

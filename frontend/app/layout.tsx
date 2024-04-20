@@ -18,13 +18,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <div className="grid h-screen w-full pl-[53px]">
-      <Aside />
-      <div className="flex flex-col">
-        <Header />
-        
-        {children}    </div>
-    </div></body>
+        <div className="grid h-screen w-full pl-[53px]">
+          <Aside />
+          <div className="flex flex-col">
+            <Header />
+            {children}{" "}
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
