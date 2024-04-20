@@ -1,0 +1,51 @@
+'use client'
+import { useRef, useEffect } from 'react';
+import Image from "next/image";
+import { Viewer, DefaultViewerParams, SpeckleLoader } from "@speckle/viewer";
+import { CameraController } from "@speckle/viewer";
+
+export default function ViewerComp() {
+  // Create a ref for the container div
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    async function main() {
+      if (containerRef.current) {
+        try {
+          
+        /** Get the HTML container via ref */
+        const container = containerRef.current;
+
+        /** Create Viewer instance */
+        const viewer = new Viewer(container, DefaultViewerParams);
+        /** Initialise the viewer */
+        await viewer.init();
+
+        /** Add the stock camera controller extension */
+        viewer.createExtension(CameraController);
+
+        /** Create a loader for the speckle stream */
+        const loader = new SpeckleLoader(
+          viewer.getWorldTree(),
+          "https://latest.speckle.dev/streams/92b620fb17/objects/801360a35cd00c13ac81522851a13341",
+          "9e873734857c1570aa623e5ab7905292293fc82976"
+        );
+        /** Load the speckle data */
+        await viewer.loadObject(loader, true);
+      } catch (error) {
+        console.error('Error loading the viewer', error);
+      }
+      } else{
+        console.log('Container not found');
+      }
+    }
+
+    // Call our function, which we named 'main'
+    main();
+  }, []); // Empty dependency array to run only once after the initial render
+
+  return (
+      <div className ="w-full min-h-96 min-w-96 justify-center" ref={containerRef} style={{ width: '100%', height: '100%' }}></div>
+    
+  );
+}
