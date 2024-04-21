@@ -35,13 +35,22 @@ import { useState } from "react";
 import { getPromptResponse } from "@/api/promtpApi";
 export default function Canvas() {
   const [prompt, setPrompt] = useState('')
-  const [response, setResponse] = useState('')
+  const [messages, setMessages] = useState([])
 
   const SendPrompt = async (event) => {
-    console.log(prompt)
+    let newArray = [...messages,
+      {
+      message: prompt,
+      chat:false
+    }]
     event.preventDefault()
     let res = await getPromptResponse(prompt)
-    setResponse(res.data)
+    setMessages([...newArray,
+    {
+      message: res.data,
+      chat: true
+    }])
+    setPrompt('')
   }
 
   return (
@@ -57,12 +66,19 @@ export default function Canvas() {
           >
         <Port />
         </div>
-     
           <div className="relative flex h-full min-h-[50vh] flex-col rounded-xl bg-muted/50 p-4 lg:col-span-2">
-            <div className="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring p-3"
-              x-chunk="dashboard-03-chunk-1">
-                {response}
+            {messages && messages.length > 0 && messages.map((e, index) => (
+              <div>
+                  <div>{e.chat ? 'ChatGPT:' : 'You:'}</div>
+                  <div></div>
+                  <div className={`relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring p-3`}
+                  x-chunk="dashboard-03-chunk-1">
+                    {e.message}
+                  </div>            
+
+
               </div>
+            ))}
             <div className="flex-1" />
             <form
               className="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"

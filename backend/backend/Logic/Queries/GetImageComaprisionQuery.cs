@@ -14,7 +14,7 @@ namespace backend.Logic.Queries
         {
             var aecTech = new AECTechLLM();
 
-            var response = await aecTech.GetImageResponse();
+            var response = await aecTech.GetImageResponse(request.Prompt);
 
             return response.Items.First().ToString();
         }
