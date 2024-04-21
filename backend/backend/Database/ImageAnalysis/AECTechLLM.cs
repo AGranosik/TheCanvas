@@ -23,6 +23,26 @@ namespace llm_sandbox
                 .Build();
         }
 
+        public async Task<ChatMessageContent> GetImageResponse(string prompt)
+        {
+            const string utciNow = "https://i.ibb.co/QdVTjYC/Copenhagen-UTCI-now.jpg";
+            const string utci2050 = "https://i.ibb.co/tmxk8xY/Copenhagen-UTCI-2050.jpg";
+            var chatCompletionService = _kernel.GetRequiredService<IChatCompletionService>();
+
+            var chatHistory = new ChatHistory("You are an enviromental sepcialist working in AEC. Focuesd on providing feedback for urban planer");
+
+            var list = new ChatMessageContentItemCollection
+            {
+                new TextContent(prompt),
+                new ImageContent(new Uri(utciNow)),
+                new ImageContent(new Uri(utci2050)),
+            };
+            chatHistory.AddUserMessage((ChatMessageContentItemCollection)list);
+
+            var reply = await chatCompletionService.GetChatMessageContentAsync(chatHistory);
+            return reply;
+        }
+
         public async Task<ChatMessageContent> GetImageResponse()
         {
             const string utciNow = "https://i.ibb.co/QdVTjYC/Copenhagen-UTCI-now.jpg";
@@ -41,9 +61,7 @@ namespace llm_sandbox
             };
             chatHistory.AddUserMessage((ChatMessageContentItemCollection)list);
 
-            var reply = await chatCompletionService.GetChatMessageContentAsync(chatHistory);
-
-           
+            var reply = await chatCompletionService.GetChatMessageContentAsync(chatHistory);   
             return reply;
         }
 
