@@ -9,7 +9,7 @@ interface ViewerCompProps {
 }
 
 // Use the interface to type the function component's props
-export default async function ViewerComp({ url }: ViewerCompProps) {
+export default function ViewerComp({ url }: ViewerCompProps) {
   // Create a ref for the container div
   const containerRef = useRef(null);
   /** Configure the viewer params */
