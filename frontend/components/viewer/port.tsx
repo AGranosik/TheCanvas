@@ -1,8 +1,12 @@
 "use client";
-import React from "react";
+import React, { use } from "react";
 import { Section } from "../ui/section";
 import ViewerComp from "./viewer";
+import { useModelContext } from "@/context/useModelContext";
 const Port: React.FC = () => {
+  const model = useModelContext();
+  console.log(model);
+
   return (
     <div className="flex flex-1 gap-8">
       <ViewerComp url="https://latest.speckle.dev/streams/7b5d332115/objects/eefc4a1345a77fe0ac14f824a2375cb4" />

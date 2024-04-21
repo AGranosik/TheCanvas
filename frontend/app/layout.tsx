@@ -1,3 +1,4 @@
+"use client";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -12,25 +13,26 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Chat from "@/components/chat/chat";
-
-export const metadata: Metadata = {
-  title: "Canvas",
-  description: "Make a decision",
-};
+import { useEffect, useState } from "react";
+import { ModelContext } from "@/context/useModelContext";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [model, setModel] = useState<string | undefined>(undefined);
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <div className="grid h-screen w-full pl-[53px]">
           <Aside />
           <div className="flex flex-col">
-            <Header />
-            {children}
+            <ModelContext.Provider value={model}>
+              <Header model={model} setModel={setModel} />
+              {children}
+            </ModelContext.Provider>
           </div>
           <div style={{ position: "absolute", bottom: "0px", left: "50%" }}>
             <Popover>

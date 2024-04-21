@@ -22,11 +22,19 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import Setting from "./buttons/setting";
 
-export default function Header() {
+export default function Header({
+  model,
+  setModel,
+}: {
+  model: string | undefined;
+  setModel: (model: string | undefined) => void;
+}) {
   return (
     <header className="sticky top-0 z-10 flex h-[53px] items-center gap-1 border-b bg-background px-4">
-      <h1 className="text-xl font-semibold">Canvas <Setting /></h1>
-      
+      <h1 className="text-xl font-semibold">
+        Canvas <Setting model={model} setModel={setModel} />
+      </h1>
+
       <Button variant="outline" size="sm" className="ml-auto gap-1.5 text-sm">
         <Share className="size-3.5" />
         Session

@@ -30,17 +30,13 @@ import {
 import { ReferencedLinks } from "@/lib/links";
 import { DrawerClose, DrawerFooter } from "@/components/ui/drawer";
 
-interface SettingProps {
-  // Add any props you need for the component here
-}
-
-const Setting: React.FC<SettingProps> = () => {
-  const [goal, setGoal] = React.useState(350);
-
-  function onClick(adjustment: number) {
-    setGoal(Math.max(200, Math.min(400, goal + adjustment)));
-  }
-
+const Setting = ({
+  model,
+  setModel,
+}: {
+  model: string | undefined;
+  setModel: (model: string | undefined) => void;
+}) => {
   return (
     <div
       className="relative w-full hidden flex-col items-start gap-8 md:flex"
@@ -49,7 +45,7 @@ const Setting: React.FC<SettingProps> = () => {
       <form className="grid w-full items-start gap-6">
         <fieldset className="grid gap-6 rounded-lg border p-4">
           <div className="grid gap-3">
-            <Select>
+            <Select value={model} onValueChange={setModel}>
               <SelectTrigger
                 id="model"
                 className="items-start [&_[data-description]]:hidden"
