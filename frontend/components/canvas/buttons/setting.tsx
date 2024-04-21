@@ -1,23 +1,6 @@
 "use client";
 import React from "react";
-import {
-  Bird,
-  Book,
-  Bot,
-  Code2,
-  CornerDownLeft,
-  LifeBuoy,
-  Mic,
-  Paperclip,
-  Rabbit,
-  Settings,
-  Settings2,
-  Share,
-  SquareTerminal,
-  SquareUser,
-  Triangle,
-  Turtle,
-} from "lucide-react";
+import { Bird, Rabbit, Sun } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -39,11 +22,11 @@ const Setting = ({
 }) => {
   return (
     <div
-      className="relative w-full hidden flex-col items-start gap-8 md:flex"
+      style={{ position: "absolute", top: "6px", right: "50%", zIndex: 10 }}
       x-chunk="dashboard-03-chunk-0"
     >
-      <form className="grid w-full items-start gap-6">
-        <fieldset className="grid gap-6 rounded-lg border p-4">
+      <form className="">
+        <fieldset className="">
           <div className="grid gap-3">
             <Select value={model} onValueChange={setModel}>
               <SelectTrigger
@@ -71,7 +54,7 @@ const Setting = ({
                 </SelectItem>
                 <SelectItem value="sun">
                   <div className="flex items-start gap-3 text-muted-foreground">
-                    <Bird className="size-5" />
+                    <Sun className="size-5" />
                     <div className="grid gap-0.5">
                       <p>
                         Model{" "}

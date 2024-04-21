@@ -13,8 +13,6 @@ const Port: React.FC = () => {
   }
   const links = ReferencedLinks[model || "wind"];
 
-  console.log(links.model.now);
-
   return (
     <div className="flex flex-1 gap-8">
       <ViewerComp url={links.model.now} />
