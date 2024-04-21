@@ -30,6 +30,7 @@ export default function ViewerComp({ url }: ViewerCompProps) {
           }
           /** Create Viewer instance */
           const viewer = new Viewer(container, params);
+
           /** Initialise the viewer */
           await viewer.init();
 

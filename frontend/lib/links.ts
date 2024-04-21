@@ -6,8 +6,8 @@ export const ReferencedLinks = {
       then: "https://latest.speckle.dev/streams/9f18f066ba/objects/7bd555c0f473f0bd7dbf57e8c7e43ff2",
     },
     image: {
-      now: "/Copenhagen-UTCI-now.jpg",
-      then: "/Copenhagen-UTCI-2050.jpg",
+      now: "/Wind Opt 1.jpg",
+      then: "/Wind Opt 2.jpg",
     },
   },
   sun: {

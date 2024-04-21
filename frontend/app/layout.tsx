@@ -21,7 +21,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [model, setModel] = useState<string | undefined>(undefined);
+  const [model, setModel] = useState<string | undefined>("wind");
 
   return (
     <html lang="en">
