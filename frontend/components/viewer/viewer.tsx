@@ -54,7 +54,7 @@ export default function ViewerComp({ url }: ViewerCompProps) {
 
     // Call our function, which we named 'main'
     main();
-  }, []); // Empty dependency array to run only once after the initial render
+  }, [url]); // Empty dependency array to run only once after the initial render
 
   return (
     <div

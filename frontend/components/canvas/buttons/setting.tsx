@@ -60,7 +60,7 @@ const Setting = ({
                       <p>
                         Model{" "}
                         <span className="font-medium text-foreground">
-                          {ReferencedLinks.Wind.name}
+                          {ReferencedLinks.wind.name}
                         </span>
                       </p>
                       <p className="text-xs" data-description>
@@ -76,23 +76,7 @@ const Setting = ({
                       <p>
                         Model{" "}
                         <span className="font-medium text-foreground">
-                          {ReferencedLinks.Sun.name}
-                        </span>
-                      </p>
-                      <p className="text-xs" data-description>
-                        Performance and speed for efficiency.
-                      </p>
-                    </div>
-                  </div>
-                </SelectItem>
-                <SelectItem value="radiation">
-                  <div className="flex items-start gap-3 text-muted-foreground">
-                    <Bird className="size-5" />
-                    <div className="grid gap-0.5">
-                      <p>
-                        Model{" "}
-                        <span className="font-medium text-foreground">
-                          {ReferencedLinks.Radiation.name}
+                          {ReferencedLinks.sun.name}
                         </span>
                       </p>
                       <p className="text-xs" data-description>
@@ -108,23 +92,7 @@ const Setting = ({
                       <p>
                         Model{" "}
                         <span className="font-medium text-foreground">
-                          {ReferencedLinks.UTCI.name}
-                        </span>
-                      </p>
-                      <p className="text-xs" data-description>
-                        Performance and speed for efficiency.
-                      </p>
-                    </div>
-                  </div>
-                </SelectItem>
-                <SelectItem value="view">
-                  <div className="flex items-start gap-3 text-muted-foreground">
-                    <Bird className="size-5" />
-                    <div className="grid gap-0.5">
-                      <p>
-                        Model{" "}
-                        <span className="font-medium text-foreground">
-                          {ReferencedLinks.View.name}
+                          {ReferencedLinks.utci.name}
                         </span>
                       </p>
                       <p className="text-xs" data-description>
