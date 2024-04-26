@@ -14,7 +14,7 @@ const Port: React.FC = () => {
   const links = ReferencedLinks[model || "wind"];
 
   return (
-    <div className="flex flex-1 gap-8">
+    <div className="flex flex-1 min-h-screen w-full">
       <ViewerComp url={links.model.now} />
       <ViewerComp url={links.model.then} />
     </div>

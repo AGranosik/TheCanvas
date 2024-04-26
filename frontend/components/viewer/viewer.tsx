@@ -59,9 +59,9 @@ export default function ViewerComp({ url }: ViewerCompProps) {
 
   return (
     <div
-      className="w-full min-h-96 min-w-96 justify-center"
-      ref={containerRef}
-      style={{ width: "100%", height: "100%" }}
-    ></div>
+    className="flex w-full h-full min-h-screen justify-center items-center"
+    ref={containerRef}
+    style={{ width: "100%", height: "100%" }}
+  ></div>
   );
 }
